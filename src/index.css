@@ -38,8 +38,56 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+/* loader */
+.loader {
+  width: 3.25em;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: rotate4 2s linear infinite;
+  animation: rotate4 2s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  -webkit-animation: dash4 1.5s ease-in-out infinite;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
+}
 
 /* main page */
+.header {
+  text-align: center;
+  margin-bottom: 2em;
+  text-transform: capitalize;
+}
 .main-page {
   width: 30vw;
   min-width: 320px;
@@ -56,6 +104,17 @@ body {
   background-color: #fff;
   border-top-left-radius: 2em;
   border-top-right-radius: 2em;
+  position: relative;
+  z-index: 1;
+}
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  z-index: -1;
+  color: #000;
 }
 .profile-image img {
   border-top-left-radius: 2em;
@@ -72,6 +131,9 @@ body {
   height: 80px;
 }
 .actions button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: 50%;
   width: 60px;
@@ -80,8 +142,20 @@ body {
   cursor: pointer;
 }
 .actions .like {
-  background-color: limegreen;
+  color: limegreen;
+  font-size: 2.5rem;
+  transition: background-color 200ms ease, color 300ms ease;
 }
 .actions .dislike {
+  color: red;
+  font-size: 2.5rem;
+  transition: background-color 200ms ease, color 300ms ease;
+}
+.actions .like:hover {
+  color: #fff;
+  background-color: limegreen;
+}
+.actions .dislike:hover {
+  color: #fff;
   background-color: red;
 }
