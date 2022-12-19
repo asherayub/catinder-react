@@ -9,7 +9,6 @@ function App() {
   const [catsData, setCatsData] = useState([]);
   const [showStartBtn, setShowStartBtn] = useState(false);
   const [toggleLikedCats, setToggleLikedCats] = useState(false);
-  const [likedCats, setLikedCats] = useState([]);
   const url = `https://api.thecatapi.com/v1/images/search?limit=25`;
   const apikey = `live_dFOz5iCPFIa699Xc8c5Xf4hqJY7ShdMpJFMtbtil1paEI8IUeueHw6whElfUoOIV`;
   useEffect(() => {
@@ -47,10 +46,8 @@ function App() {
     });
     setImgIndex((prev) => prev + 1);
   };
-//  ??ERROR HERE
-  useEffect(() => {
-    setLikedCats(catsData.filter(cat => cat.isLiked));
-  }, [catsData]);
+  console.table(catsData);
+
   const dislikedCat = () => {
     setImgIndex((prev) => prev + 1);
   };
@@ -78,12 +75,7 @@ function App() {
         </div>
       ) : (
         <div className="main-page">
-          {likedCats.length > 0 && (
-            <button onClick={setToggleLikedCats((prev) => !prev)}>
-              Show Liked Cats
-            </button>
-          )}
-          {/* {likedCat} */}
+            
           <div className="header">
             <h1>find the best match for your cat</h1>
           </div>
