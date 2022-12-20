@@ -9,6 +9,7 @@ function App() {
   const [catsData, setCatsData] = useState([]);
   const [showStartBtn, setShowStartBtn] = useState(false);
   const [toggleLikedCats, setToggleLikedCats] = useState(false);
+  const [likedCats, setLikedCats] = useState([]);
   const url = `https://api.thecatapi.com/v1/images/search?limit=25`;
   const apikey = `live_dFOz5iCPFIa699Xc8c5Xf4hqJY7ShdMpJFMtbtil1paEI8IUeueHw6whElfUoOIV`;
   useEffect(() => {
@@ -45,9 +46,10 @@ function App() {
       });
     });
     setImgIndex((prev) => prev + 1);
-  };
-  console.table(catsData);
-
+    setLikedCats(catsData.filter(cat => cat.isLiked))
+};
+console.log(likedCats)
+console.table(catsData);
   const dislikedCat = () => {
     setImgIndex((prev) => prev + 1);
   };
