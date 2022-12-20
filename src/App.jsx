@@ -33,11 +33,12 @@ function App() {
             .filter((cat) => cat !== undefined)
         )
       );
-  }, [startPage]);
+  }, []);
   const likedCat = () => {
     setCatsData((prev) => {
       return prev.map((cat) => {
         if (cat.catId === catsData[imgIndex].catId) {
+          setLikedCats((prev) => [...prev, cat.catURL]);
           return {
             ...cat,
             isLiked: true,
@@ -46,10 +47,9 @@ function App() {
       });
     });
     setImgIndex((prev) => prev + 1);
-    setLikedCats(catsData.filter(cat => cat.isLiked))
-};
-console.log(likedCats)
-console.table(catsData);
+  };
+  console.log("Liked Cats", likedCats);
+  console.table(catsData);
   const dislikedCat = () => {
     setImgIndex((prev) => prev + 1);
   };
@@ -77,7 +77,6 @@ console.table(catsData);
         </div>
       ) : (
         <div className="main-page">
-            
           <div className="header">
             <h1>find the best match for your cat</h1>
           </div>
